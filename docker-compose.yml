@@ -45,34 +45,6 @@ services:
       retries: 3
 
   # -----------------------------------------------------------------
-  #                     N8N Workflow Init Container
-  # -----------------------------------------------------------------
-  n8n-import:
-    container_name: ai-scraping-n8n-import
-    image: n8nio/n8n:latest
-    user: "1000:1000"
-    entrypoint: /bin/sh
-    command:
-      - "-c"
-      - "n8n import:workflow --separate --input=/backup/workflows || echo 'No workflows to import'"
-    environment:
-      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=db
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_USER=postgres
-      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
-      - DB_POSTGRESDB_DATABASE=postgres
-      - DB_POSTGRESDB_SCHEMA=n8n_data
-    volumes:
-      - n8n-data:/home/node/.n8n
-      - ./n8n/workflows:/backup/workflows:ro
-    networks: [app-network]
-    depends_on:
-      db: { condition: service_healthy }
-    restart: "no"
-
-  # -----------------------------------------------------------------
   #                            N8N Main Service
   # -----------------------------------------------------------------
   n8n:
@@ -132,7 +104,6 @@ services:
     depends_on:
       db: { condition: service_healthy }
       redis: { condition: service_healthy }
-      n8n-import: { condition: service_completed_successfully }
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5678/healthz"]
       interval: 30s
@@ -554,7 +525,6 @@ services:
     image: supabase/postgres:15.8.1.060
     restart: unless-stopped
     volumes:
-      - ./supabase/volumes/db/init/01-init.sql:/docker-entrypoint-initdb.d/init-scripts/01-init.sql:Z
       - ./supabase/volumes/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
       - ./supabase/volumes/db/webhooks.sql:/docker-entrypoint-initdb.d/init-scripts/98-webhooks.sql:Z
       - ./supabase/volumes/db/roles.sql:/docker-entrypoint-initdb.d/init-scripts/99-roles.sql:Z
