@@ -4,7 +4,7 @@
 
 A production-ready template that combines **n8n workflow automation**, **Playwright MCP browser control**, **AI analysis**, and **Supabase backend** to create powerful web scraping agents. Perfect for cybersecurity automation, OSINT workflows, and any AI-driven web analysis projects.
 
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://docker.com) [![AI](https://img.shields.io/badge/AI-Multiple_LLMs-FF6B35)](https://n8n.io) [![n8n](https://img.shields.io/badge/Automation-n8n-FF6D5A)](https://n8n.io) [![Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E)](https://supabase.com) [![RAG](https://img.shields.io/badge/RAG-pgvector-9333EA)](https://github.com/pgvector/pgvector)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://docker.com) [![AI](https://img.shields.io/badge/AI-Multiple_LLMs-FF6B35)](https://n8n.io) [![n8n](https://img.shields.io/badge/Automation-n8n-FF6D5A)](https://n8n.io) [![Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E)](https://supabase.com) [![RAG](https://img.shields.io/badge/RAG-pgvector-9333EA)](https://github.com/pgvector/pgvector) [![VNC](https://img.shields.io/badge/VNC-Remote_Desktop-FF5722)](https://github.com/novnc/noVNC)
 
 ## 🎯 What This Is
 
@@ -60,13 +60,14 @@ docker compose up -d
 - **🎛️ n8n Workflow Builder**: http://localhost:5678
 - **🗄️ Supabase Database**: http://localhost:3000
 - **🤖 Playwright MCP**: http://localhost:8831
+- **🖥️ Test VNC**: http://localhost:6080 - Watch browser automation in real-time via VNC
 
 ## 📋 What You Get
 
 ### **Core Infrastructure**
 - **PostgreSQL Database** with vector extensions for embeddings
 - **n8n Automation Server** with worker queue system
-- **Playwright MCP Server** for AI-controlled browser automation
+- **Playwright MCP Server** for AI-controlled browser automation with VNC access
 - **Redis Queue** for background task processing
 - **Supabase Stack** for real-time database and storage
 

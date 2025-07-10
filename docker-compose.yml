@@ -25,6 +25,7 @@ volumes:
   playwright-browser-data:
   redis-data:
   n8n-workflows:
+  shared-screenshots:
 
 services:
   # -----------------------------------------------------------------
@@ -167,7 +168,10 @@ services:
     container_name: ai-scraping-playwright
     build: { context: ./playwright-mcp }
     restart: unless-stopped
-    ports: ["${PLAYWRIGHT_MCP_PORT:-8831}:8831"]
+    ports: 
+      - "${PLAYWRIGHT_MCP_PORT:-8831}:8831"
+      - "5900:5900"  # VNC port for browser GUI access
+      - "6080:6080"  # noVNC web interface
     environment:
       # Core configuration (user-defined in .env)
       - PLAYWRIGHT_MCP_PORT=${PLAYWRIGHT_MCP_PORT:-8831}
@@ -175,6 +179,7 @@ services:
       # Debug mode (always enabled)
       - DEBUG=pw:browser,pw:network,pw:page
     volumes:
+      - shared-screenshots:/screenshots
       - playwright-browser-data:/app/browser-data
     networks: [app-network]
     depends_on: []
