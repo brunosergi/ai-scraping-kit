@@ -4,7 +4,11 @@
 
 A production-ready template that combines **n8n workflow automation**, **Playwright MCP browser control**, **AI analysis**, and **Supabase backend** to create powerful web scraping agents. Perfect for cybersecurity automation, OSINT workflows, and any AI-driven web analysis projects.
 
+<div align="center">
+
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://docker.com) [![AI](https://img.shields.io/badge/AI-Multiple_LLMs-FF6B35)](https://n8n.io) [![n8n](https://img.shields.io/badge/Automation-n8n-FF6D5A)](https://n8n.io) [![Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E)](https://supabase.com) [![RAG](https://img.shields.io/badge/RAG-pgvector-9333EA)](https://github.com/pgvector/pgvector) [![VNC](https://img.shields.io/badge/VNC-Remote_Desktop-FF5722)](https://github.com/novnc/noVNC)
+
+</div>
 
 ## 🎯 What This Is
 
@@ -61,6 +65,8 @@ docker compose up -d
 - **🗄️ Supabase Database**: http://localhost:3000
 - **🤖 Playwright MCP**: http://localhost:8831
 - **🖥️ Test VNC**: http://localhost:6080 - Watch browser automation in real-time via VNC
+
+**Manual Browser Control:** Access VNC at http://localhost:6080, press Alt+F2 and enter `chromium` for manual debugging and troubleshooting.
 
 ## 📋 What You Get
 
